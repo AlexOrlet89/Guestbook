@@ -6,7 +6,9 @@ Alright, Father, give us courage to change what must be altered, serenity to acc
 
 We're using our user.js fetch function directly in our context.
 
-Private Route
+Private Route was added not without reinventing the wheel.
+
+lets add a logout function to further prove this shit works, because I'm proving my private route works by ! my user and getting redirected. I think i can add logout to my userContext and add it to Home that way.. inshallah.
 
 Rubric
 Tasks Points
