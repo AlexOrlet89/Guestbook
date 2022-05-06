@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useUserContext } from '../context/UserContext';
-import { createEntry } from '../services/entries';
+import { createEntry, getEntries } from '../services/entries';
 
 export default function Entries() {
-  const [entry, setEntry] = useState('default');
+  const [newEntry, setNewEntry] = useState('default');
+  const [entries, setEntries] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const { user } = useUserContext();
-  console.log(entry);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getEntries();
+      console.log(data);
+      setEntries(data);
+    };
+    fetchData();
+  }, []);
 
   const handleSubmitEntry = async (e) => {
     e.preventDefault();
     console.log('prepare to handle submit');
-    console.log(entry, 'entry');
+    console.log(newEntry, 'newEntry');
     let userId = user.id;
-    const response = await createEntry({ userId, content: entry });
+    const response = await createEntry({ userId, content: newEntry });
     console.log(response);
   };
 
@@ -21,9 +32,9 @@ export default function Entries() {
       <h4>Your Entries, m'lady...</h4>
       <form onSubmit={handleSubmitEntry}>
         <textarea
-          value={entry}
+          value={newEntry}
           onChange={(e) => {
-            setEntry(e.target.value);
+            setNewEntry(e.target.value);
           }}
         ></textarea>
         <button>Submot</button>
