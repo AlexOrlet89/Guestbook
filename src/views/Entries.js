@@ -38,11 +38,13 @@ export default function Entries() {
             setNewEntry(e.target.value);
           }}
         ></textarea>
-        <button>Submot</button>
+        <button>Submit</button>
       </form>
       <ul>
         {entries.map((entrie) => (
-          <li key={entrie.id}>{entrie.content}</li>
+          <li key={entrie.id}>
+            {entrie.content}, written by {user.email.split('@')[0]}
+          </li>
         ))}
       </ul>
     </>

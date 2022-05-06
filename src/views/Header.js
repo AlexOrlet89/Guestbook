@@ -14,7 +14,7 @@ export default function Header() {
 
   return (
     <>
-      <h2>Guestbook Entries</h2>
+      <h2>Guestbook</h2>
       {user.email ? <p> welcome, {user.email}</p> : <p>no user</p>}
       <button onClick={handleLogout}>Logout</button>
     </>
