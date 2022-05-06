@@ -1,7 +1,9 @@
+import { useContext } from 'react';
 import { createContext, useState } from 'react';
 import { getUser, signInUser } from '../services/user';
 //this is our custom context for providing user data through out our site.
 export const UserContext = createContext();
+
 // now we create our custom Provider to wrap around app.js, deconstructed children will be whatever's wrapped in it.
 export const UserProvider = ({ children }) => {
   // checks to see if there is a current user and returns the user or falsy
@@ -11,14 +13,13 @@ export const UserProvider = ({ children }) => {
   //create the login function the provider will pass to children. async, takes password and email
   const login = async (email, password) => {
     //setUser to our sign, else throw
-    try {
-      const authenticatedUser = await signInUser({ email, password });
+    const authenticatedUser = await signInUser({ email, password });
 
-      if (authenticatedUser) {
-        setUser(authenticatedUser);
-      }
-    } catch (error) {
-      console.log(error.message);
+    if (authenticatedUser) {
+      setUser(authenticatedUser);
+      console.log('user authd');
+    } else {
+      console.log('error');
     }
   };
 
@@ -27,4 +28,14 @@ export const UserProvider = ({ children }) => {
       {children}
     </UserContext.Provider>
   );
+};
+
+export const useUserContext = () => {
+  const context = useContext(UserContext);
+
+  if (context === undefined) {
+    throw new Error('useUserContext must be used with in a UserProvider');
+  }
+
+  return context;
 };
