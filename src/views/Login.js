@@ -43,7 +43,9 @@ export default function () {
             setPassword(e.target.value);
           }}
         />
-        <button type="submit">Sign in</button>
+        <button name="submit" type="submit">
+          Sign in
+        </button>
         <hr />
       </form>
     </div>
