@@ -14,6 +14,7 @@ export default function Entries() {
       const data = await getEntries();
       console.log(data);
       setEntries(data);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -39,6 +40,11 @@ export default function Entries() {
         ></textarea>
         <button>Submot</button>
       </form>
+      <ul>
+        {entries.map((entrie) => (
+          <li key={entrie.id}>{entrie.content}</li>
+        ))}
+      </ul>
     </>
   );
 }
