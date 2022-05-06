@@ -1,5 +1,5 @@
-import { loadOptions } from '@babel/core';
 import { screen } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
@@ -20,7 +20,35 @@ test('Page should redirect to /login upon load', async () => {
     </MemoryRouter>
   );
   const signInButton = screen.getByRole('button', { text: 'submit' });
-  screen.debug();
 
   expect(signInButton).toBeInTheDocument();
+});
+
+test('Should redirect to home upon login', async () => {
+  render(
+    <MemoryRouter initialEntries={['/']} initialIndex={0}>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </MemoryRouter>
+  );
+  const signInButton = screen.getByRole('button', { text: 'submit' });
+  const emailField = screen.getByLabelText(/email/i);
+  const passwordField = screen.getByLabelText(/password/i);
+  fireEvent.change(emailField, {
+    target: { value: 'shania@gmail.com' },
+  });
+  fireEvent.change(passwordField, {
+    target: { value: 'twain66' },
+  });
+  expect(emailField).toHaveValue('shania@gmail.com');
+  expect(passwordField).toHaveValue('twain66');
+
+  fireEvent.click(signInButton);
+
+  const mlady = await screen.findByRole('heading', {
+    name: /your entries, m'lady\.\.\./i,
+  });
+  screen.debug();
+  expect(mlady).toBeInTheDocument();
 });

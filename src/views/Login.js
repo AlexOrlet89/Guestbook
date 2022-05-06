@@ -23,7 +23,7 @@ export default function () {
   return (
     <div>
       <form onSubmit={handleLogin}>
-        <label>Email</label>
+        <label htmlFor="email">Email</label>
         <input
           id="email"
           name="email"
@@ -33,7 +33,7 @@ export default function () {
             setEmail(e.target.value);
           }}
         />{' '}
-        <label>Password</label>
+        <label htmlFor="password">Password</label>
         <input
           id="password"
           name="password"
