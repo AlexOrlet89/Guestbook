@@ -1,9 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useUserContext } from '../context/UserContext';
-import Header from './Header';
 
-export default function Home() {
+export default function Header() {
   const { user, logout } = useUserContext();
   const history = useHistory();
 
@@ -15,12 +14,9 @@ export default function Home() {
 
   return (
     <>
-      <Header />
-      <ul>
-        <li>an entry</li>
-        <li>an entry</li>
-        <li>an entry</li>
-      </ul>
+      <h2>Guestbook Entries</h2>
+      {user.email ? <p> welcome, {user.email}</p> : <p>no user</p>}
+      <button onClick={handleLogout}>Logout</button>
     </>
   );
 }
