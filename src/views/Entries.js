@@ -6,6 +6,7 @@ export default function Entries() {
   const [newEntry, setNewEntry] = useState('default');
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [updatedEntries, setUpdatedEntries] = useState({});
 
   const { user } = useUserContext();
 
@@ -19,6 +20,16 @@ export default function Entries() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getEntries();
+      console.log(data);
+      setEntries(data);
+      setLoading(false);
+    };
+    fetchData();
+  }, [updatedEntries]);
+
   const handleSubmitEntry = async (e) => {
     e.preventDefault();
     console.log('prepare to handle submit');
@@ -26,6 +37,7 @@ export default function Entries() {
     let userId = user.id;
     const response = await createEntry({ userId, content: newEntry });
     console.log(response);
+    setUpdatedEntries(response);
   };
 
   return (
@@ -40,13 +52,17 @@ export default function Entries() {
         ></textarea>
         <button>Submit</button>
       </form>
-      <ul>
-        {entries.map((entrie) => (
-          <li key={entrie.id}>
-            {entrie.content}, written by {user.email.split('@')[0]}
-          </li>
-        ))}
-      </ul>
+      {loading ? (
+        <label>loading...</label>
+      ) : (
+        <ul>
+          {entries.map((entrie, i) => (
+            <li key={i}>
+              {entrie.content}, written by {user.email.split('@')[0]}
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 }

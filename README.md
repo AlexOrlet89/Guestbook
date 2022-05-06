@@ -10,6 +10,8 @@ Private Route was added not without reinventing the wheel.
 
 lets add a logout function to further prove this shit works, because I'm proving my private route works by ! my user and getting redirected. I think i can add logout to my userContext and add it to Home that way.. inshallah.
 
+Lets get started on testing...
+
 ## Rubric
 
 Use a custom hook to expose our context state for reading/writing 1
@@ -19,4 +21,5 @@ Use the user context state in at least 2 components (e.g. header and entry list)
 Guestbook entry uses the email stored in context for the name 2
 // this is also technically done, but check with TAs
 Behavior testing for EntryList view 2
+
 Deployed on Netlify with CI passing
