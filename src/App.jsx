@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { PrivateRoute } from './components/PrivateRoute';
+import { useUserContext } from './context/UserContext';
 import Home from './views/Home';
 import Login from './views/Login';
 
@@ -11,9 +13,9 @@ export default function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route exact path="/">
+          <PrivateRoute exact path="/">
             <Home />
-          </Route>
+          </PrivateRoute>
         </Switch>
       </BrowserRouter>
     </>
