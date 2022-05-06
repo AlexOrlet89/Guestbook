@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { UserContext, useUserContext } from '../context/UserContext';
+import { useHistory } from 'react-router-dom';
+import { useUserContext } from '../context/UserContext';
 
 export default function () {
   const { login, user } = useUserContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     console.log('handleLogin');
     try {
       await login(email, password);
+      console.log(user);
+      history.replace('/');
     } catch (error) {
       console.log(error.message);
     }
