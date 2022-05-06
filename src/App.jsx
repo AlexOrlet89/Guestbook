@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { PrivateRoute } from './components/PrivateRoute';
-import { useUserContext } from './context/UserContext';
 import Home from './views/Home';
 import Login from './views/Login';
 
