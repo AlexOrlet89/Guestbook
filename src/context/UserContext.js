@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { createContext, useState } from 'react';
-import { getUser, signInUser, signOutUser } from '../services/user';
+import { getUser, signInUser, signOutUser, signUpUser } from '../services/user';
 //this is our custom context for providing user data through out our site.
 export const UserContext = createContext();
 
@@ -22,6 +22,17 @@ export const UserProvider = ({ children }) => {
       console.log('error');
     }
   };
+  const signUp = async (email, password) => {
+    //setUser to our sign, else throw
+    const authenticatedUser = await signUpUser({ email, password });
+
+    if (authenticatedUser) {
+      setUser(authenticatedUser);
+      console.log('user authd');
+    } else {
+      console.log('error');
+    }
+  };
 
   const logout = async () => {
     await signOutUser();
@@ -29,7 +40,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, login, logout, signUp }}>
       {children}
     </UserContext.Provider>
   );
