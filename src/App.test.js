@@ -19,7 +19,7 @@ test('Page should redirect to /login upon load', async () => {
       </UserProvider>
     </MemoryRouter>
   );
-  const signInButton = screen.getByRole('button', { text: 'submit' });
+  const signInButton = screen.getByRole('button', { name: /sign in/i });
 
   expect(signInButton).toBeInTheDocument();
 });
@@ -32,7 +32,7 @@ test('Should redirect to home upon login', async () => {
       </UserProvider>
     </MemoryRouter>
   );
-  const signInButton = screen.getByRole('button', { text: 'submit' });
+  const signInButton = screen.getByRole('button', { name: /sign in/i });
   const emailField = screen.getByLabelText(/email/i);
   const passwordField = screen.getByLabelText(/password/i);
   fireEvent.change(emailField, {
