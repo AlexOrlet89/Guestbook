@@ -9,7 +9,7 @@ export async function getEntries() {
 }
 
 export async function createEntry({ userId, content }) {
-  console.log(content);
+  // console.log(content);
   const request = await client
     .from('entries')
     .insert({ guest_id: userId, content });

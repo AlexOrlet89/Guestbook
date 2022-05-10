@@ -13,7 +13,7 @@ export default function Entries() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getEntries();
-      console.log(data);
+      // console.log(data);
       setEntries(data);
       setLoading(false);
     };
@@ -23,7 +23,7 @@ export default function Entries() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getEntries();
-      console.log(data);
+      // console.log(data);
       setEntries(data);
       setLoading(false);
     };
@@ -32,11 +32,11 @@ export default function Entries() {
 
   const handleSubmitEntry = async (e) => {
     e.preventDefault();
-    console.log('prepare to handle submit');
-    console.log(newEntry, 'newEntry');
+    // console.log('prepare to handle submit');
+    // console.log(newEntry, 'newEntry');
     let userId = user.id;
     const response = await createEntry({ userId, content: newEntry });
-    console.log(response);
+    // console.log(response);
     setUpdatedEntries(response);
   };
 

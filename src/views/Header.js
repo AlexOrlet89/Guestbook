@@ -7,7 +7,7 @@ export default function Header() {
   const history = useHistory();
 
   const handleLogout = () => {
-    console.log('handleLogout');
+    // console.log('handleLogout');
     logout();
     history.replace('/login');
   };

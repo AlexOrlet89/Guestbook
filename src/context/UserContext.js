@@ -17,9 +17,9 @@ export const UserProvider = ({ children }) => {
 
     if (authenticatedUser) {
       setUser(authenticatedUser);
-      console.log('user authd');
+      // console.log('user authd');
     } else {
-      console.log('error');
+      // console.log('error');
     }
   };
   const signUp = async (email, password) => {
@@ -28,15 +28,15 @@ export const UserProvider = ({ children }) => {
 
     if (authenticatedUser) {
       setUser(authenticatedUser);
-      console.log('user authd');
+      // console.log('user authd');
     } else {
-      console.log('error');
+      // console.log('error');
     }
   };
 
   const logout = async () => {
     await signOutUser();
-    console.log('usersignedout...');
+    // console.log('usersignedout...');
   };
 
   return (

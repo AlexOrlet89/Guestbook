@@ -10,24 +10,24 @@ export default function () {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('handleLogin');
+    // console.log('handleLogin');
     try {
       await login(email, password);
-      console.log(user);
+      // console.log(user);
       history.replace('/');
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   };
   const handleSignUp = async (e) => {
     e.preventDefault();
-    console.log('handleLogin');
+    // console.log('handleLogin');
     try {
       await signUp(email, password);
-      console.log(user);
+      // console.log(user);
       history.replace('/');
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   };
 
